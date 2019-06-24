@@ -1,0 +1,25 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Module3.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:ViewModels="clr-namespace:Module3.ViewModels" x:Class="Module3.Views.M3"
+             lex:LocalizeDictionary.DesignCulture="ja-JP"
+             lex:ResxLocalizationProvider.DefaultAssembly="CommonModels"
+             lex:ResxLocalizationProvider.DefaultDictionary="Resources"
+             mc:Ignorable="d" 
+             d:DesignHeight="1169.163" d:DesignWidth="874.904"
+             prism:ViewModelLocator.AutoWireViewModel="True" d:DataContext="{d:DesignInstance {x:Type ViewModels:M3ViewModel}}" >
+    <Grid Background="#FFD9F3FF">
+        <ScrollViewer Margin="5,50,5,5" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <TextBox TextWrapping="Wrap" Text="カスタムトレースリスナーをTraceListenersプロジェクトに追加&#xA;これを使用するようにする設定をApp.Configに記載&#xA;&#xA;&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;&#xA;&lt;configuration&gt;&#xA;  &lt;!-- トレース設定 --&gt;&#xA;  &lt;system.diagnostics&gt;&#xA;    &lt;sources&gt;&#xA;      &lt;source name=&quot;LogSource&quot; switchName=&quot;TraceSwitch&quot;&#xA;        switchType=&quot;System.Diagnostics.SourceSwitch&quot; &gt;&#xA;        &lt;listeners&gt;&#xA;          &lt;add name=&quot;datetime&quot; /&gt;&#xA;        &lt;/listeners&gt;&#xA;      &lt;/source&gt;&#xA;    &lt;/sources&gt;&#xA;    &lt;switches&gt;&#xA;      &lt;add name=&quot;TraceSwitch&quot; value=&quot;Information&quot;/&gt;&#xA;    &lt;/switches&gt;&#xA;    &lt;sharedListeners&gt;&#xA;      &lt;add name=&quot;datetime&quot; type=&quot;TraceListeners.DateTimeTraceListener, TraceListeners&quot;&#xA;           initializeData=&quot;.\Trace\%YYYYMMDD%%SUFFIX%.log&quot;&#xA;           MaxSize=&quot;100000&quot;&#xA;           SuffixFormat=&quot;D2&quot;&#xA;           Encoding=&quot;utf-8&quot;&#xA;           DateFormat=&quot;yyyyMMdd&quot;/&gt;&#xA;    &lt;/sharedListeners&gt;&#xA;    &lt;trace autoflush=&quot;true&quot; indentsize=&quot;4&quot;&gt;&#xA;      &lt;listeners&gt;&#xA;        &lt;add name=&quot;datetime&quot; /&gt;&#xA;      &lt;/listeners&gt;&#xA;    &lt;/trace&gt;&#xA;  &lt;/system.diagnostics&gt;&#xA;&lt;/configuration&gt;&#xA;&#xA;使用する時には&#xA;Trace.WriteLine(書き出したい文言);&#xA;&#xA;&#xA;App.configはテキストのまま出力フォルダーにコピーされて使用されるので、リリース後もエディターで書き換えることで出力先を変えたりすることが可能&#xA;" IsReadOnly="True" Background="{x:Null}" BorderThickness="0"/>
+        </ScrollViewer>
+        <TextBlock Text="{Binding Message}"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Top" MinWidth="60" Margin="0,5,25,0" />
+        <Button Content="{lex:Loc LOGWRITE}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Command="{Binding CommandLogWrite, Mode=OneWay}" Margin="10,10,0,0"/>
+    </Grid>
+</UserControl>

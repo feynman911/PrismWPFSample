@@ -1,0 +1,20 @@
+﻿<MenuItem
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:prism="http://prismlibrary.com/"             
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:ViewModels="clr-namespace:Module2.ViewModels" 
+    mc:Ignorable="d" 
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    xmlns:lex="http://wpflocalizeextension.codeplex.com"
+    lex:LocalizeDictionary.DesignCulture="en-US"
+    lex:ResxLocalizationProvider.DefaultAssembly="CommonModels"
+    lex:ResxLocalizationProvider.DefaultDictionary="Resources"
+    x:Class="Module2.Views.M2Menu" Header="{Binding VM2.Title}" 
+    d:DataContext="{d:DesignInstance {x:Type ViewModels:M2MenuViewModel}}"             
+                 
+    >
+    <MenuItem Header="{Binding VM2.HeaderMenu1}" Command="{Binding VM2.CommandEventTest1, Mode=OneWay}" IsEnabled="{Binding VM2.MyCommonData.CommandEnable}" />
+    <MenuItem Header="{Binding VM2.HeaderMenu2}" Command="{Binding VM2.CommandEventTest2, Mode=OneWay}" IsEnabled="{Binding VM2.MyCommonData.CommandEnable}" />
+</MenuItem>

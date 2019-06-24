@@ -1,0 +1,78 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Module6.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:ViewModels="clr-namespace:Module6.ViewModels" 
+    xmlns:Converters="clr-namespace:CommonModels.Converters;assembly=CommonModels" 
+    xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" 
+    x:Class="Module6.Views.M6"
+             mc:Ignorable="d" 
+             d:DesignHeight="1232.371" d:DesignWidth="778.449"
+             prism:ViewModelLocator.AutoWireViewModel="True" 
+    d:DataContext="{d:DesignInstance {x:Type ViewModels:M6ViewModel}}" >
+    <UserControl.Resources>
+        <Converters:Ushort2HexConverter x:Key="Ushort2HexConverter"/>
+        <Converters:Ushort2Bit16Converter x:Key="Ushort2Bit16Converter"/>
+        <Converters:ScaleConverter x:Key="ScaleConverter"/>
+        <Converters:EnumRadioConverter x:Key="EnumRadioConverter"/>
+    </UserControl.Resources>
+    <Grid Background="#FFEAD6D6">
+        <ScrollViewer Margin="5" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <TextBox TextWrapping="Wrap" Text="コンバーターEnumRadioConverterの例&#xD;&#xA;&#xD;&#xA;using System;&#xD;&#xA;using System.Windows;&#xD;&#xA;using System.Globalization;&#xD;&#xA;using System.Windows.Data;&#xD;&#xA;&#xD;&#xA;namespace CommonModels.Converters&#xD;&#xA;{&#xD;&#xA;    //ラジオボタン選択コンバーター&#xD;&#xA;    //パラメーターとして自分の名前を設定し、同じ変数にバインドする&#xD;&#xA;    //    private EnumDefines.RBEnum myType;&#xD;&#xA;    //    public EnumDefines.RBEnum MyType&#xD;&#xA;    //    {&#xD;&#xA;    //        get { return this.myType; }&#xD;&#xA;    //        set&#xD;&#xA;    //        {&#xD;&#xA;    //            this.myType = value;&#xD;&#xA;    //            RaisePropertyChanged(&quot;MyType&quot;);&#xD;&#xA;    //       }&#xD;&#xA;    //    }&#xD;&#xA;    public class EnumRadioConverter : IValueConverter&#xD;&#xA;    {&#xD;&#xA;        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)&#xD;&#xA;        {&#xD;&#xA;            string paramString = parameter as string;&#xD;&#xA;            if (paramString == null)&#xD;&#xA;            {&#xD;&#xA;                return DependencyProperty.UnsetValue;&#xD;&#xA;            }&#xD;&#xA;            if (!Enum.IsDefined(value.GetType(), paramString))&#xD;&#xA;            {&#xD;&#xA;                return DependencyProperty.UnsetValue;&#xD;&#xA;            }&#xD;&#xA;            var paramParsed = Enum.Parse(value.GetType(), paramString);&#xD;&#xA;            return (value.Equals(paramParsed));&#xD;&#xA;        }&#xD;&#xA;        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)&#xD;&#xA;        {&#xD;&#xA;            var paramString = parameter as string;&#xD;&#xA;            if (paramString == null)&#xD;&#xA;            {&#xD;&#xA;                return DependencyProperty.UnsetValue;&#xD;&#xA;            }&#xD;&#xA;            if ((bool)value != true) return DependencyProperty.UnsetValue;&#xD;&#xA;            return Enum.Parse(targetType, paramString);&#xD;&#xA;        }&#xD;&#xA;    }&#xD;&#xA;    public class EnumDefines&#xD;&#xA;    {&#xD;&#xA;        public enum RBEnum&#xD;&#xA;        {&#xD;&#xA;            RB0,&#xD;&#xA;            RB1,&#xD;&#xA;            RB2,&#xD;&#xA;            RB3,&#xD;&#xA;            RB4,&#xD;&#xA;            RB5,&#xD;&#xA;            RB6,&#xD;&#xA;            RB7,&#xD;&#xA;            RB8,&#xD;&#xA;            RB9,&#xD;&#xA;        }&#xD;&#xA;    }&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" Background="{x:Null}" IsReadOnly="True" BorderThickness="0"/>
+        </ScrollViewer>
+        <TextBlock Text="{Binding Message}" Margin="0,5,25,0" HorizontalAlignment="Right" VerticalAlignment="Top" MinWidth="35" Width="60" />
+        <Border HorizontalAlignment="Right" Height="280" VerticalAlignment="Top" Margin="0,49,40,0" Width="340" BorderBrush="#FF0017FF" BorderThickness="1" CornerRadius="10" Background="#FFE6EEFF">
+            <Grid Margin="0">
+                <Grid Margin="38,9,30,171">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="View" VerticalAlignment="Top" Margin="2,0,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="194,1,0,0" Text="ViewModel"/>
+                    <TextBox TextWrapping="Wrap" Text="{Binding TestData, ConverterParameter=0\, 1.094 \, 0, Converter={StaticResource ScaleConverter}, StringFormat=\{0:F3\}}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,24,0,0" Width="60" TextAlignment="Right"/>
+                    <TextBox TextWrapping="Wrap" Text="{Binding TestData, ConverterParameter=0.0 \, 3.28 \, 0.0, Converter={StaticResource ScaleConverter}, StringFormat=\{0:F3\}}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,46,0,0" Width="60" TextAlignment="Right"/>
+                    <TextBox TextWrapping="Wrap" Text="{Binding TestData, ConverterParameter=0.0\, 39.37 \, 0.0, Converter={StaticResource ScaleConverter}, StringFormat=\{0:F3\}}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,67,0,0" Width="60" TextAlignment="Right"/>
+                    <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding TestData, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, StringFormat=\{0:F3\}}" VerticalAlignment="Top" Width="60" Margin="182,24,0,0" TextAlignment="Right"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="79,1,0,0" Text="ScaleConverter" FontSize="10"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="yards" VerticalAlignment="Top" Margin="62,23,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="feet" VerticalAlignment="Top" Margin="62,46,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="inches" VerticalAlignment="Top" Margin="62,68,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="m" VerticalAlignment="Top" Margin="244,24,0,0"/>
+                    <ed:BlockArrow Fill="#FFF4F4F5" Orientation="Right" Stroke="Black" Margin="152,4,0,0" HorizontalAlignment="Left" Height="10" VerticalAlignment="Top" Width="36"/>
+                    <ed:BlockArrow Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="10" Orientation="Left" Stroke="Black" VerticalAlignment="Top" Width="36" Margin="35,4,0,0"/>
+                </Grid>
+                <Grid Margin="38,105,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="View" VerticalAlignment="Top" Margin="19,2,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="194,1,0,0" Text="ViewModel"/>
+                    <TextBox TextWrapping="Wrap" Text="{Binding TestData2, Converter={StaticResource Ushort2Bit16Converter}}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,24,0,0" Width="124" TextAlignment="Center"/>
+                    <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding TestData2}" VerticalAlignment="Top" Width="60" Margin="182,24,0,0" TextAlignment="Right"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="70,2,0,0" Text="Ushort2Bit16Converter" FontSize="10"/>
+                    <ed:BlockArrow Fill="#FFF4F4F5" Orientation="Right" Stroke="Black" Margin="174,5,0,0" HorizontalAlignment="Left" Height="10" VerticalAlignment="Top" Width="16                                    "/>
+                    <ed:BlockArrow Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="10" Orientation="Left" Stroke="Black" VerticalAlignment="Top" Width="16                                    " Margin="50,5,0,0"/>
+                </Grid>
+                <Grid Margin="38,165,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="View" VerticalAlignment="Top" Margin="19,2,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="194,1,0,0" Text="ViewModel"/>
+                    <TextBox TextWrapping="Wrap" Text="{Binding TestData2, Converter={StaticResource Ushort2HexConverter}}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,24,0,0" Width="124" TextAlignment="Center"/>
+                    <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding TestData2}" VerticalAlignment="Top" Width="60" Margin="182,24,0,0" TextAlignment="Right"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="70,2,0,0" Text="Ushort2HexConverter" FontSize="10"/>
+                    <ed:BlockArrow Fill="#FFF4F4F5" Orientation="Right" Stroke="Black" Margin="174,5,0,0" HorizontalAlignment="Left" Height="10" VerticalAlignment="Top" Width="16                                    "/>
+                    <ed:BlockArrow Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="10" Orientation="Left" Stroke="Black" VerticalAlignment="Top" Width="16                                    " Margin="50,5,0,0"/>
+                </Grid>
+                <Grid Margin="7,220,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <GroupBox Header="EnumRadioConverter Sample" VerticalAlignment="Top" HorizontalAlignment="Left" BorderBrush="Blue">
+                        <StackPanel Margin="0,5,0,0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <RadioButton Content="RB1" Padding="0" Margin="2,0" IsChecked="{Binding MyType, ConverterParameter=RB1, Converter={StaticResource EnumRadioConverter}}"/>
+                            <RadioButton Content="RB2" Padding="0" Margin="2,0" IsChecked="{Binding MyType, ConverterParameter=RB2, Converter={StaticResource EnumRadioConverter}}"/>
+                            <RadioButton Content="RB3" Padding="0" Margin="2,0" IsChecked="{Binding MyType, ConverterParameter=RB3, Converter={StaticResource EnumRadioConverter}}"/>
+                            <RadioButton Content="RB4" Padding="0" Margin="2,0" IsChecked="{Binding MyType, ConverterParameter=RB4, Converter={StaticResource EnumRadioConverter}}"/>
+                        </StackPanel>
+                    </GroupBox>
+                    <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding MyType}" VerticalAlignment="Top" Width="40" Margin="280,15,0,0" TextAlignment="Center"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="230,12,0,0" FontSize="9.333"><Run Text="ViewModel "/><LineBreak/><Run Text="MyType"/></TextBlock>
+                    <ed:BlockArrow Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="10" Margin="180,20,0,0" Orientation="Right" Stroke="Black" VerticalAlignment="Top" Width="41"/>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

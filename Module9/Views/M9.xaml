@@ -1,0 +1,24 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Module9.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:ViewModels="clr-namespace:Module9.ViewModels" x:Class="Module9.Views.M9"
+             mc:Ignorable="d" 
+             d:DesignHeight="1189" d:DesignWidth="643.333"
+             lex:LocalizeDictionary.DesignCulture="ja-JP"
+             lex:ResxLocalizationProvider.DefaultAssembly="CommonModels"
+             lex:ResxLocalizationProvider.DefaultDictionary="Resources"
+             prism:ViewModelLocator.AutoWireViewModel="True" d:DataContext="{d:DesignInstance {x:Type ViewModels:M9ViewModel}}"  >
+    <Grid Background="#FFFFFCDB" MinWidth="200" MinHeight="200">
+        <TextBlock Text="{Binding Message}"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Top" Margin="0,5,25,0" MinWidth="60" />
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <TextBox TextWrapping="Wrap" Text="★メニューの追加&#xA;&#xA;１．モジュールにPrismユーザーコントロールを追加&#xA;　　　　M9Menu.xaml と M9MenuViewModel.cs が追加される。&#xA;２．追加されたM9Menu.xamlをUserControlからMenuItemに変更。&#xA;　　　　Menu.xaml&#xA;　　　　　　&lt;UserControl ....&gt;  &lt;/UserControl&gt;   -&gt;   &lt;Menutem....&gt;  &lt;/MenuItem&gt;&#xA;　　　　Menu.xaml.cs&#xA;　　　　　　public partial class M9Menu : UserControl -&gt; M9Menu : MenuItem&#xD;&#xA;３．M9Module .csにMenuRegionに挿入されるように指定&#xD;&#xA;　　同時に、M9ViewModelをMenuからアクセスできるようにSingletonで登録&#xD;&#xA;&#xD;&#xA;    public class M9Module : IModule&#xD;&#xA;    {&#xD;&#xA;        public void OnInitialized(IContainerProvider containerProvider)&#xD;&#xA;        {&#xD;&#xA;            var regionManager = containerProvider.Resolve&lt;IRegionManager&gt;();&#xD;&#xA;            regionManager.RegisterViewWithRegion(&quot;ContentRegion&quot;, typeof(M9));&#xD;&#xA;            regionManager.RegisterViewWithRegion(&quot;MenuRegion&quot;, typeof(M9Menu));&#xD;&#xA;        }&#xD;&#xA;&#xD;&#xA;        public void RegisterTypes(IContainerRegistry containerRegistry)&#xD;&#xA;        {&#xD;&#xA;            containerRegistry.RegisterSingleton&lt;ViewModels.M9ViewModel&gt;();&#xD;&#xA;        }&#xD;&#xA;    }&#xD;&#xA;&#xD;&#xA;４．M9MenuViewModelに引数付きコンストラクターを追加し、メニューからM9ViewModelにアクセスできるようにする。&#xD;&#xA;　　M9ViewModelはPrismからコンストラクターの引数経由で受け取る事。&#xD;&#xA;　　下記設定でVM9経由でメニューからM9ViewModelにバインドが可能となる。&#xD;&#xA;&#xD;&#xA;        public M9MenuViewModel(M9ViewModel VM)&#xD;&#xA;        {&#xD;&#xA;            VM9 = VM;&#xD;&#xA;        }&#xD;&#xA;&#xD;&#xA;        private M9ViewModel vM9 ;&#xD;&#xA;        public M9ViewModel VM9&#xD;&#xA;        {&#xD;&#xA;            get { return vM9; }&#xD;&#xA;            set { SetProperty(ref vM9, value); }&#xD;&#xA;        }&#xD;&#xA;&#xD;&#xA;５．M9Menu.xamlにMenuItemを追加してメニューを構成する。&#xD;&#xA;　　デザイン時のViewModelにM9MenuViewModelを設定して、バインドの準備をする&#xD;&#xA;　　メニューのHeaderは直接設定してもいいが、M9ViewModelに設定したプロパティとバインドして多言語化する。&#xD;&#xA;　　メニューを選択時に実行するコマンドもM9ViewModelに作ってVM9経由でバインドする。&#xD;&#xA;&#xD;&#xA;&lt;MenuItem&#xD;&#xA;    ・・・・・・・・・・・・・・・・&#xD;&#xA;    xmlns:ViewModels=&quot;clr-namespace:Module9.ViewModels&quot; &#xD;&#xA;    mc:Ignorable=&quot;d&quot;&#xD;&#xA;    prism:ViewModelLocator.AutoWireViewModel=&quot;True&quot;&#xD;&#xA;    Header=&quot;{Binding VM9.Title}&quot; &#xD;&#xA;    d:DataContext=&quot;{d:DesignInstance {x:Type ViewModels:M9MenuViewModel}}&quot;&gt; &#xD;&#xA;    &lt;MenuItem Header=&quot;{Binding VM9.HeaderMenu1}&quot; &#xD;&#xA;        Command=&quot;{Binding VM9.CommandMenu1, Mode=OneWay}&quot; &#xD;&#xA;        IsEnabled=&quot;{Binding VM9.MyCModel.CommandEnable}&quot;/&gt;&#xD;&#xA;    &lt;MenuItem Header=&quot;{Binding VM9.HeaderMenu2}&quot; &#xD;&#xA;        Command=&quot;{Binding VM9.CommandMenu2, Mode=OneWay}&quot; &#xD;&#xA;        IsEnabled=&quot;{Binding VM9.MyCModel.CommandEnable}&quot;/&gt;&#xD;&#xA;&lt;/MenuItem&gt;&#xD;&#xA;&#xD;&#xA;６．以上の設定でメインアプリのMenuRegionにモジュールで作成したメニューが追加される。" IsReadOnly="True" BorderThickness="0" Background="{x:Null}"/>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

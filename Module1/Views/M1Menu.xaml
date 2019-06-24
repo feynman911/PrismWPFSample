@@ -1,0 +1,9 @@
+﻿<MenuItem
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ViewModels="clr-namespace:Module1.ViewModels" mc:Ignorable="d" x:Class="Module1.Views.M1Menu"             
+             prism:ViewModelLocator.AutoWireViewModel="True" d:DataContext="{d:DesignInstance {x:Type ViewModels:M1MenuViewModel}}" Header="{Binding VM1.Title}">
+    <MenuItem Header="{Binding VM1.HeaderMenu1}" Command="{Binding VM1.CommandMenu1, Mode=OneWay}" IsEnabled="{Binding VM1.MyCModel.CommandEnable}"/>
+    <MenuItem Header="{Binding VM1.HeaderMenu2}" Command="{Binding VM1.CommandMenu2, Mode=OneWay}" IsEnabled="{Binding VM1.MyCModel.CommandEnable}"/>
+</MenuItem>

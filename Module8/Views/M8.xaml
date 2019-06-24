@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="Module8.Views.M8"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Module8.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             d:DesignHeight="597.61" d:DesignWidth="764.94"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True" >
+    <Grid Background="#FFFAFFE4">
+        <TextBlock Text="{Binding Message}"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Top" Width="60" Margin="0,5,25,0" />
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="5">
+            <TextBox TextWrapping="Wrap" Text="★2重起動禁止&#xD;&#xA;App.xamlでプロパティーを開いて&#xD;&#xA;　Exit 　と　Startup  をダブルクリック&#xD;&#xA;してイベントハンドラーを追加&#xD;&#xA;下記の内容を　App.xaml.cs　に追加することで　2重起動を禁止できます。&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;        private static System.Threading.Mutex mutex;&#xD;&#xA;&#xD;&#xA;        private void PrismApplication_Startup(object sender, StartupEventArgs e)&#xD;&#xA;        {&#xD;&#xA;            mutex = new System.Threading.Mutex(false, &quot;Mutexの名称&quot;);&#xD;&#xA;&#xD;&#xA;            if (!mutex.WaitOne(0, false))&#xD;&#xA;            {&#xD;&#xA;                mutex.Close();&#xD;&#xA;                mutex = null;&#xD;&#xA;&#xD;&#xA;                this.Shutdown();&#xD;&#xA;            }&#xD;&#xA;        }&#xD;&#xA;&#xD;&#xA;        private void PrismApplication_Exit(object sender, ExitEventArgs e)&#xD;&#xA;        {&#xD;&#xA;            if (mutex != null)&#xD;&#xA;            {&#xD;&#xA;                mutex.ReleaseMutex();&#xD;&#xA;                mutex.Close();&#xD;&#xA;            }&#xD;&#xA;        }" IsReadOnly="True" Background="{x:Null}" BorderThickness="0"/>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
