@@ -25,21 +25,21 @@ namespace Module2.ViewModels
             _ea = ea;
 
             //モデルの生成
-            MyViewAModel = new M2Model(MyCModel, _ea);
+            MyM2Model = new M2Model(MyCModel, _ea);
             _ea.GetEvent<LanguageChangeEvent>().Subscribe(ChangedLang);
 
             //TabItemのHeaderになる言葉を多言語設定の為Resoucesから取り出す
             Title = CModel.GetLocalizedValue<string>("TITLEM2");
         }
 
-        private M2Model myViewAModel;
+        private M2Model myM2Model;
         /// <summary>
         /// このモジュールのモデル
         /// </summary>
-        public M2Model MyViewAModel
+        public M2Model MyM2Model
         {
-            get { return myViewAModel; }
-            set { SetProperty(ref myViewAModel, value); }
+            get { return myM2Model; }
+            set { SetProperty(ref myM2Model, value); }
         }
 
         private string _message = "Module2";
@@ -61,7 +61,7 @@ namespace Module2.ViewModels
 
         private string _headerMenu1 = CModel.GetLocalizedValue<string>("M2MENU1");
         /// <summary>
-        /// TabItemのHeaderにバインドされる
+        /// MenuItemのHeaderにバインドする
         /// </summary>
         public string HeaderMenu1
         {
@@ -71,7 +71,7 @@ namespace Module2.ViewModels
 
         private string _headerMenu2 = CModel.GetLocalizedValue<string>("M2MENU2");
         /// <summary>
-        /// TabItemのHeaderにバインドされる
+        /// MenuItemのHeaderにバインドする
         /// </summary>
         public string HeaderMenu2
         {
