@@ -13,8 +13,10 @@
              x:Class="Module5.Views.M5"
              mc:Ignorable="d" 
              d:DesignHeight="722.118" d:DesignWidth="723.176"
-             prism:ViewModelLocator.AutoWireViewModel="True" d:DataContext="{d:DesignInstance {x:Type ViewModels:M5ViewModel}}" >
+             prism:ViewModelLocator.AutoWireViewModel="True" 
+             d:DataContext="{d:DesignInstance {x:Type ViewModels:M5ViewModel}}" >
     <UserControl.Resources>
+
 
         <Style x:Key="ColumnHeaderGripperStyle" TargetType="{x:Type Thumb}">
             <Setter Property="Width" Value="8"/>
@@ -28,14 +30,16 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="DataGridColumnHeaderStyle1" TargetType="{x:Type DataGridColumnHeader}">
+        <Style x:Key="DataGridColumnHeaderCenter" TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
                         <Grid>
                             <Themes:DataGridHeaderBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" IsClickable="{TemplateBinding CanUserSort}" IsPressed="{TemplateBinding IsPressed}" IsHovered="{TemplateBinding IsMouseOver}" Padding="{TemplateBinding Padding}" SortDirection="{TemplateBinding SortDirection}" SeparatorBrush="{TemplateBinding SeparatorBrush}" SeparatorVisibility="{TemplateBinding SeparatorVisibility}">
-                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                <Grid Margin="0">
+                                    <ContentPresenter RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="Center"/>
+                                </Grid>
                             </Themes:DataGridHeaderBorder>
                             <Thumb x:Name="PART_LeftHeaderGripper" HorizontalAlignment="Left" Style="{StaticResource ColumnHeaderGripperStyle}"/>
                             <Thumb x:Name="PART_RightHeaderGripper" HorizontalAlignment="Right" Style="{StaticResource ColumnHeaderGripperStyle}"/>
@@ -43,8 +47,16 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Setter Property="SeparatorVisibility" Value="Hidden"/>
         </Style>
+        <Style x:Key="TextBlockStyleRight" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="2,0"/>
+            <Setter Property="TextAlignment" Value="Right"/>
+        </Style>
+        <Style x:Key="TextBlockStyleCenter" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="2,0"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
 
     </UserControl.Resources>
     <Grid Background="#FFF5FFD9">
@@ -55,10 +67,10 @@
             <TextBox TextWrapping="Wrap" Text="アプリケーションの設定を呼び出したり保存したりできます。&#xD;&#xA;Properties の Settings.settings で定義&#xD;&#xA;スコープがアプリケーションの時にはアプリケーション単位の設定となり、変更できません。&#xD;&#xA;スコープがユーザーの時にはアプリ内から変更して保存＆読み出しができます。&#xD;&#xA;リセットによって変更した設定をデフォルトに戻すことができます。&#xD;&#xA;&#xD;&#xA;var settingInfo = Properties.Settings.Default;&#xA;    &#xA;//DataGridとのバインド用プロパティ&#xA;private ObservableCollection&lt;SettingObject&gt; settingCollection &#xA;            = new ObservableCollection&lt;SettingObject&gt;();&#xA;public ObservableCollection&lt;SettingObject&gt; SettingCollection&#xA;{&#xA;    get { return settingCollection; }&#xA;    set { SetProperty(ref settingCollection, value); }&#xA;}&#xA;    &#xA;//設定を表示用に読み出し＆ソート（読込ボタンの処理）&#xA;private void makeSettingCollection()&#xA;{&#xA;    var tempCollection = new ObservableCollection&lt;SettingObject&gt;();&#xA;    foreach (System.Configuration.SettingsProperty item in MyCModel.SettingInfo.Properties)&#xA;    {&#xA;        var name = item.Name;&#xA;        var value = MyCModel.SettingInfo[name];&#xA;        tempCollection.Add(new SettingObject(name,value));&#xA;    }&#xA;    SettingCollection = &#xA;        new ObservableCollection&lt;SettingObject&gt;(tempCollection.OrderBy(n =&gt; n.Key));&#xA;    }&#xA;    &#xA;//修正値の保存（保存ボタンの処理）&#xA;private void saveSettingCollection()&#xA;{&#xA;    foreach(SettingObject item in SettingCollection)&#xA;    {&#xA;        string key = item.Key;&#xA;        object value = item.Value;&#xA;        MyCModel.SettingInfo[key] = value;&#xA;    }&#xA;    MyCModel.SettingInfo.Save();&#xA;}&#xA;    &#xA;//Settings.settingsから表示用&#xA;private void resetSettingCollection()&#xA;{&#xA;    MyCModel.SettingInfo.Reset();&#xA;    makeSettingCollection();&#xA;}" Background="{x:Null}" BorderThickness="0"/>
         </ScrollViewer>
         <Grid Margin="0,50,25,0" HorizontalAlignment="Right" VerticalAlignment="Top">
-            <DataGrid Margin="0,35,0,0" HorizontalAlignment="Left" MinWidth="100" VerticalAlignment="Top" MinHeight="200" ItemsSource="{Binding SettingCollection}" HeadersVisibility="Column" GridLinesVisibility="None" AlternatingRowBackground="#FFE2E2E2" AlternationCount="2" BorderBrush="#FF688CAF" AutoGenerateColumns="False" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" Height="354">
+            <DataGrid Margin="0,35,0,0" HorizontalAlignment="Left" MinWidth="100" VerticalAlignment="Top" MinHeight="200" ItemsSource="{Binding SettingCollection}" HeadersVisibility="Column" GridLinesVisibility="None" AlternatingRowBackground="#FFE2E2E2" AlternationCount="2" BorderBrush="#FF688CAF" AutoGenerateColumns="False" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderCenter}" Height="354" Background="#FFE6E6E6">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Key}" ClipboardContentBinding="{x:Null}"  Header="KEY" MinWidth="150" SortDirection="Ascending" IsReadOnly="True" HeaderStyle="{Binding Mode=OneWay, Source={StaticResource DataGridColumnHeaderStyle1}}"/>
-                    <DataGridTextColumn Binding="{Binding Value}" ClipboardContentBinding="{x:Null}" Header="VALUE" MinWidth="150" HeaderStyle="{Binding Mode=OneWay, Source={StaticResource DataGridColumnHeaderStyle1}}"/>
+                    <DataGridTextColumn Binding="{Binding Key}" ClipboardContentBinding="{x:Null}"  Header="KEY" MinWidth="150" SortDirection="Ascending" IsReadOnly="True" HeaderStyle="{Binding Mode=OneWay, Source={StaticResource DataGridColumnHeaderCenter}}" ElementStyle="{Binding Mode=OneWay, Source={StaticResource TextBlockStyleCenter}}"/>
+                    <DataGridTextColumn Binding="{Binding Value}" ClipboardContentBinding="{x:Null}" Header="VALUE" MinWidth="150" HeaderStyle="{Binding Mode=OneWay, Source={StaticResource DataGridColumnHeaderCenter}}" ElementStyle="{Binding Mode=OneWay, Source={StaticResource TextBlockStyleRight}}"/>
                 </DataGrid.Columns>
             </DataGrid>
             <Button Content="{lex:Loc READ}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="0,5,0,0" Command="{Binding DispSetting, Mode=OneWay}"/>

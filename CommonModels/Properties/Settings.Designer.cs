@@ -25,7 +25,7 @@ namespace CommonModels.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public string data1 {
             get {
                 return ((string)(this["data1"]));
@@ -37,7 +37,7 @@ namespace CommonModels.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public string data2 {
             get {
                 return ((string)(this["data2"]));
@@ -49,7 +49,7 @@ namespace CommonModels.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
         public string data3 {
             get {
                 return ((string)(this["data3"]));
@@ -61,7 +61,7 @@ namespace CommonModels.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
         public string data4 {
             get {
                 return ((string)(this["data4"]));
@@ -73,7 +73,7 @@ namespace CommonModels.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
         public string data5 {
             get {
                 return ((string)(this["data5"]));
@@ -85,7 +85,7 @@ namespace CommonModels.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("6")]
         public string data6 {
             get {
                 return ((string)(this["data6"]));
@@ -97,7 +97,7 @@ namespace CommonModels.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
         public string data7 {
             get {
                 return ((string)(this["data7"]));

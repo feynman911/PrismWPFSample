@@ -87,10 +87,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Dictionary1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\M5.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
