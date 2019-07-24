@@ -25,7 +25,7 @@ namespace Module4.Models
     //画面表示の為のデータ構造にはしない
     //画面表示の為に変換が必要な時にはViewModelでラップする
     //そのまま表示できるものは、わざわざViewModelでリレーするようなことはしない
-    public class SoundModel:BindableBase
+    public class SoundModel:BindableBase,IDisposable
     {
         IEventAggregator ea;
         CModel commondata;
@@ -275,5 +275,10 @@ namespace Module4.Models
         }
 
         #endregion
+
+        public void Dispose()
+        {
+            SoundCaptureOff();
+        }
     }
 }
