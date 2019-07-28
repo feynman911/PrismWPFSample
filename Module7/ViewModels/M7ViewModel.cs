@@ -1,9 +1,6 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
+﻿using CommonModels;
 using Prism.Events;
-using System.Linq;
-using CommonModels;
-using CommonModels.Converters;
+using Prism.Mvvm;
 
 namespace Module7.ViewModels
 {

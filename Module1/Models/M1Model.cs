@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Prism.Mvvm;
+﻿using CommonModels;
 using Prism.Events;
-using System.Diagnostics;
-using CommonModels;
+using Prism.Mvvm;
 
 namespace Module1.Models
 {

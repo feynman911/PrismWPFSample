@@ -1,20 +1,15 @@
-﻿using Prism.Commands;
+﻿using CommonModels;
+using CommonModels.Converters;
+using Microsoft.Win32;
+using Module4.Models;
+using OxyPlot;
+using Prism.Commands;
+using Prism.Events;
 using Prism.Mvvm;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Prism.Events;
-using CommonModels;
-using Module4.Models;
-using System.Diagnostics;
-using OxyPlot;
-using OxyPlot.Series;
 using System.IO;
 using System.Windows;
-using Microsoft.Win32;
-using System.Threading;
+using System.Windows.Threading;
 
 namespace Module4.ViewModels
 {
@@ -22,7 +17,7 @@ namespace Module4.ViewModels
     {
         IEventAggregator _ea;
 
-        public M4ViewModel() {  }
+        public M4ViewModel() { }
 
         public M4ViewModel(CModel cModel, IEventAggregator ea)
         {
@@ -37,9 +32,43 @@ namespace Module4.ViewModels
             Title = CModel.GetLocalizedValue<string>("TITLEM4");
 
             Plot1 = MySoundModel.PlotModelRT;
-            Plot2 = MySoundModel.PlotModelFFT;
-            
+            MyType = EnumDefines.RBEnum.RB1;
+
+            SetupTimer();
         }
+
+        /// <summary>
+        /// タイマーの初期化
+        /// </summary>
+        private void SetupTimer()
+        {
+            // タイマのインスタンスを生成
+            mytimer1 = new DispatcherTimer();
+            mytimer2 = new DispatcherTimer();
+
+            // 優先度はDispatcherPriority.Background
+
+            // インターバルを設定
+            mytimer1.Interval = TimeSpan.FromMilliseconds(100);
+            mytimer2.Interval = TimeSpan.FromMilliseconds(100);
+            // タイマメソッドを設定
+            mytimer1.Tick += timer_Tick1;
+            mytimer2.Tick += timer_Tick2;
+        }
+
+        void timer_Tick1(object sender, EventArgs e)
+        {
+            MySoundModel.PlotRT();
+        }
+        void timer_Tick2(object sender, EventArgs e)
+        {
+            if (MyType == EnumDefines.RBEnum.RB1) MySoundModel.PlotFFT();
+            if (MyType == EnumDefines.RBEnum.RB2) MySoundModel.PlotSpectrogram();
+        }
+
+        // タイマのインスタンス
+        private DispatcherTimer mytimer1;
+        private DispatcherTimer mytimer2;
 
         private SoundModel myViewAModel;
         /// <summary>
@@ -111,11 +140,15 @@ namespace Module4.ViewModels
             if (val)
             {
                 MySoundModel.SoundCaptureOn();
+                mytimer1.Start();
+                mytimer2.Start();
                 ret = MySoundModel.captureFlag;
             }
             else
             {
                 MySoundModel.SoundCaptureOff();
+                mytimer1.Stop();
+                mytimer2.Stop();
                 ret = !MySoundModel.captureFlag;
             }
             return ret;
@@ -145,7 +178,7 @@ namespace Module4.ViewModels
         /// <param name="height">保存画像高さ</param>
         public void SavePlot(PlotModel pm, string filename = "", int width = 800, int height = 600)
         {
-            if ( filename == "")
+            if (filename == "")
             {
                 var dlg = new SaveFileDialog
                 {
@@ -176,7 +209,7 @@ namespace Module4.ViewModels
                                 OxyPlot.PdfExporter.Export(pm, s, width, height);
                             }));
                         }
-                            break;
+                        break;
                     default:
                         break;
 
@@ -206,7 +239,7 @@ namespace Module4.ViewModels
         public void CopyPlot(PlotModel pm, int width = 800, int height = 600)
         {
             var pngExporter = new OxyPlot.Wpf.PngExporter { Width = width, Height = height, Background = OxyColors.White };
-            Application.Current.Dispatcher.Invoke((Action)(() => 
+            Application.Current.Dispatcher.Invoke((Action)(() =>
             {
                 var bitmap = pngExporter.ExportToBitmap(pm);
                 Clipboard.SetImage(bitmap);
@@ -260,6 +293,23 @@ namespace Module4.ViewModels
             set { SetProperty(ref plot2, value); }
         }
 
+        #endregion
+
+        #region ******************** チャート切り替え用プロパティ
+        private EnumDefines.RBEnum myType;
+        /// <summary>
+        /// ラジオボタンバインドテスト用
+        /// </summary>
+        public EnumDefines.RBEnum MyType
+        {
+            get { return this.myType; }
+            set
+            {
+                SetProperty(ref myType, value);
+                if (value == EnumDefines.RBEnum.RB1) Plot2 = MySoundModel.PlotModelFFT;
+                if (value == EnumDefines.RBEnum.RB2) Plot2 = MySoundModel.PlotModelSpectrogram;
+            }
+        }
         #endregion
 
     }

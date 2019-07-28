@@ -1,14 +1,9 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
-using Prism.Events;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using CommonModels;
+﻿using CommonModels;
 using Module2.Models;
+using Prism.Commands;
+using Prism.Events;
+using Prism.Mvvm;
+using System.Threading.Tasks;
 
 namespace Module2.ViewModels
 {

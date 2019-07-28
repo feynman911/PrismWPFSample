@@ -1,18 +1,12 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Prism.Events;
-using CommonModels;
+﻿using CommonModels;
 using Module1.Models;
+using Prism.Commands;
+using Prism.Events;
+using Prism.Mvvm;
+using System.Collections.ObjectModel;
 using System.Globalization;
-using WPFLocalizeExtension.Extensions;
+using System.Threading.Tasks;
 using WPFLocalizeExtension.Engine;
-using System.Diagnostics;
 
 namespace Module1.ViewModels
 {

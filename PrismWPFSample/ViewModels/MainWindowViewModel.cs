@@ -1,10 +1,8 @@
-﻿using Prism.Mvvm;
+﻿using CommonModels;
 using Prism.Events;
-using WPFLocalizeExtension.Engine;
-using WPFLocalizeExtension.Extensions;
+using Prism.Mvvm;
 using System.Globalization;
-using CommonModels;
-using System.Diagnostics;
+using WPFLocalizeExtension.Engine;
 
 namespace PrismWPFSample.ViewModels
 {

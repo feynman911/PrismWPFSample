@@ -1,6 +1,4 @@
 ﻿using Prism.Mvvm;
-using Prism.Events;
-using CommonModels;
 
 namespace Module2.ViewModels
 {
