@@ -66,7 +66,7 @@ namespace PrismWPFSample.Views
 
             if (settings.WindowMaximized)
             {
-                Loaded += (o, e) => WindowState = WindowState.Maximized;
+                WindowState = WindowState.Maximized;
             }
         }
     }

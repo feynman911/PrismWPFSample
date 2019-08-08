@@ -14,17 +14,27 @@
              prism:ViewModelLocator.AutoWireViewModel="True" 
     d:DataContext="{d:DesignInstance {x:Type ViewModels:M6ViewModel}}" >
     <UserControl.Resources>
-        <Converters:Ushort2HexConverter x:Key="Ushort2HexConverter"/>
-        <Converters:Ushort2Bit16Converter x:Key="Ushort2Bit16Converter"/>
-        <Converters:ScaleConverter x:Key="ScaleConverter"/>
-        <Converters:EnumRadioConverter x:Key="EnumRadioConverter"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Module6;component/Simple Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Converters:BoolInvertConverter x:Key="BoolInvertConverter"/>
+            <Converters:Bool2CursorWaitConverter x:Key="Bool2CursorWaitConverter"/>
+            <Converters:BoolVisiblityConverter x:Key="BoolVisiblityConverter"/>
+            <Converters:StringCheck2BrushConverter x:Key="StringCheck2BrushConverter"/>
+            <Converters:DoubleCheck2BrushConverter x:Key="DoubleCheck2BrushConverter"/>
+            <Converters:Ushort2HexConverter x:Key="Ushort2HexConverter"/>
+            <Converters:Ushort2Bit16Converter x:Key="Ushort2Bit16Converter"/>
+            <Converters:ScaleConverter x:Key="ScaleConverter"/>
+            <Converters:EnumRadioConverter x:Key="EnumRadioConverter"/>
+        </ResourceDictionary>
     </UserControl.Resources>
     <Grid Background="#FFEAD6D6">
         <ScrollViewer Margin="5" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <TextBox TextWrapping="Wrap" Text="コンバーターEnumRadioConverterの例&#xD;&#xA;&#xD;&#xA;using System;&#xD;&#xA;using System.Windows;&#xD;&#xA;using System.Globalization;&#xD;&#xA;using System.Windows.Data;&#xD;&#xA;&#xD;&#xA;namespace CommonModels.Converters&#xD;&#xA;{&#xD;&#xA;    //ラジオボタン選択コンバーター&#xD;&#xA;    //パラメーターとして自分の名前を設定し、同じ変数にバインドする&#xD;&#xA;    //    private EnumDefines.RBEnum myType;&#xD;&#xA;    //    public EnumDefines.RBEnum MyType&#xD;&#xA;    //    {&#xD;&#xA;    //        get { return this.myType; }&#xD;&#xA;    //        set&#xD;&#xA;    //        {&#xD;&#xA;    //            this.myType = value;&#xD;&#xA;    //            RaisePropertyChanged(&quot;MyType&quot;);&#xD;&#xA;    //       }&#xD;&#xA;    //    }&#xD;&#xA;    public class EnumRadioConverter : IValueConverter&#xD;&#xA;    {&#xD;&#xA;        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)&#xD;&#xA;        {&#xD;&#xA;            string paramString = parameter as string;&#xD;&#xA;            if (paramString == null)&#xD;&#xA;            {&#xD;&#xA;                return DependencyProperty.UnsetValue;&#xD;&#xA;            }&#xD;&#xA;            if (!Enum.IsDefined(value.GetType(), paramString))&#xD;&#xA;            {&#xD;&#xA;                return DependencyProperty.UnsetValue;&#xD;&#xA;            }&#xD;&#xA;            var paramParsed = Enum.Parse(value.GetType(), paramString);&#xD;&#xA;            return (value.Equals(paramParsed));&#xD;&#xA;        }&#xD;&#xA;        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)&#xD;&#xA;        {&#xD;&#xA;            var paramString = parameter as string;&#xD;&#xA;            if (paramString == null)&#xD;&#xA;            {&#xD;&#xA;                return DependencyProperty.UnsetValue;&#xD;&#xA;            }&#xD;&#xA;            if ((bool)value != true) return DependencyProperty.UnsetValue;&#xD;&#xA;            return Enum.Parse(targetType, paramString);&#xD;&#xA;        }&#xD;&#xA;    }&#xD;&#xA;    public class EnumDefines&#xD;&#xA;    {&#xD;&#xA;        public enum RBEnum&#xD;&#xA;        {&#xD;&#xA;            RB0,&#xD;&#xA;            RB1,&#xD;&#xA;            RB2,&#xD;&#xA;            RB3,&#xD;&#xA;            RB4,&#xD;&#xA;            RB5,&#xD;&#xA;            RB6,&#xD;&#xA;            RB7,&#xD;&#xA;            RB8,&#xD;&#xA;            RB9,&#xD;&#xA;        }&#xD;&#xA;    }&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" Background="{x:Null}" IsReadOnly="True" BorderThickness="0"/>
+            <TextBox TextWrapping="Wrap" Text="コンバーターEnumRadioConverterの例&#xA;&#xA;using System;&#xA;using System.Windows;&#xA;using System.Globalization;&#xA;using System.Windows.Data;&#xA;&#xA;namespace CommonModels.Converters&#xA;{&#xA;    //ラジオボタン選択コンバーター&#xA;    //パラメーターとして自分の名前を設定し、同じ変数にバインドする&#xA;    //    private EnumDefines.RBEnum myType;&#xA;    //    public EnumDefines.RBEnum MyType&#xA;    //    {&#xA;    //        get { return this.myType; }&#xA;    //        set&#xA;    //        {&#xA;    //            this.myType = value;&#xA;    //            RaisePropertyChanged(&quot;MyType&quot;);&#xA;    //       }&#xA;    //    }&#xA;    public class EnumRadioConverter : IValueConverter&#xA;    {&#xA;        public object Convert(object value, Type targetType, &#xD;&#xA;                          object parameter, CultureInfo culture)&#xA;        {&#xA;            string paramString = parameter as string;&#xA;            if (paramString == null)&#xA;            {&#xA;                return DependencyProperty.UnsetValue;&#xA;            }&#xA;            if (!Enum.IsDefined(value.GetType(), paramString))&#xA;            {&#xA;                return DependencyProperty.UnsetValue;&#xA;            }&#xA;            var paramParsed = Enum.Parse(value.GetType(), paramString);&#xA;            return (value.Equals(paramParsed));&#xA;        }&#xA;        public object ConvertBack(object value, Type targetType, &#xD;&#xA;                     object parameter, CultureInfo culture)&#xA;        {&#xA;            var paramString = parameter as string;&#xA;            if (paramString == null)&#xA;            {&#xA;                return DependencyProperty.UnsetValue;&#xA;            }&#xA;            if ((bool)value != true) return DependencyProperty.UnsetValue;&#xA;            return Enum.Parse(targetType, paramString);&#xA;        }&#xA;    }&#xA;    public class EnumDefines&#xA;    {&#xA;        public enum RBEnum&#xA;        {&#xA;            RB0,&#xA;            RB1,&#xA;            RB2,&#xA;            RB3,&#xA;            RB4,&#xA;            RB5,&#xA;            RB6,&#xA;            RB7,&#xA;            RB8,&#xA;            RB9,&#xA;        }&#xA;    }&#xA;}&#xA;&#xA;&#xA;" Background="{x:Null}" IsReadOnly="True" BorderThickness="0"/>
         </ScrollViewer>
         <TextBlock Text="{Binding Message}" Margin="0,5,25,0" HorizontalAlignment="Right" VerticalAlignment="Top" MinWidth="35" Width="60" />
-        <Border HorizontalAlignment="Right" Height="280" VerticalAlignment="Top" Margin="0,49,40,0" Width="340" BorderBrush="#FF0017FF" BorderThickness="1" CornerRadius="10" Background="#FFE6EEFF">
+        <Border HorizontalAlignment="Right" Height="463" VerticalAlignment="Top" Margin="0,33,40,0" Width="340" BorderBrush="#FF0017FF" BorderThickness="1" CornerRadius="10" Background="#FFE6EEFF">
             <Grid Margin="0">
                 <Grid Margin="38,9,30,171">
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="View" VerticalAlignment="Top" Margin="2,0,0,0"/>
@@ -41,7 +51,7 @@
                     <ed:BlockArrow Fill="#FFF4F4F5" Orientation="Right" Stroke="Black" Margin="152,4,0,0" HorizontalAlignment="Left" Height="10" VerticalAlignment="Top" Width="36"/>
                     <ed:BlockArrow Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="10" Orientation="Left" Stroke="Black" VerticalAlignment="Top" Width="36" Margin="35,4,0,0"/>
                 </Grid>
-                <Grid Margin="38,105,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Grid Margin="38,99,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="View" VerticalAlignment="Top" Margin="19,2,0,0"/>
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="194,1,0,0" Text="ViewModel"/>
                     <TextBox TextWrapping="Wrap" Text="{Binding TestData2, Converter={StaticResource Ushort2Bit16Converter}}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,24,0,0" Width="124" TextAlignment="Center"/>
@@ -50,7 +60,7 @@
                     <ed:BlockArrow Fill="#FFF4F4F5" Orientation="Right" Stroke="Black" Margin="174,5,0,0" HorizontalAlignment="Left" Height="10" VerticalAlignment="Top" Width="16                                    "/>
                     <ed:BlockArrow Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="10" Orientation="Left" Stroke="Black" VerticalAlignment="Top" Width="16                                    " Margin="50,5,0,0"/>
                 </Grid>
-                <Grid Margin="38,165,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Grid Margin="38,146,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="View" VerticalAlignment="Top" Margin="19,2,0,0"/>
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="194,1,0,0" Text="ViewModel"/>
                     <TextBox TextWrapping="Wrap" Text="{Binding TestData2, Converter={StaticResource Ushort2HexConverter}}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,24,0,0" Width="124" TextAlignment="Center"/>
@@ -59,7 +69,11 @@
                     <ed:BlockArrow Fill="#FFF4F4F5" Orientation="Right" Stroke="Black" Margin="174,5,0,0" HorizontalAlignment="Left" Height="10" VerticalAlignment="Top" Width="16                                    "/>
                     <ed:BlockArrow Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="10" Orientation="Left" Stroke="Black" VerticalAlignment="Top" Width="16                                    " Margin="50,5,0,0"/>
                 </Grid>
-                <Grid Margin="7,220,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Grid Margin="7,189,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="99*"/>
+                        <ColumnDefinition Width="61*"/>
+                    </Grid.ColumnDefinitions>
                     <GroupBox Header="EnumRadioConverter Sample" VerticalAlignment="Top" HorizontalAlignment="Left" BorderBrush="Blue">
                         <StackPanel Margin="0,5,0,0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <RadioButton Content="RB1" Padding="0" Margin="2,0" IsChecked="{Binding MyType, ConverterParameter=RB1, Converter={StaticResource EnumRadioConverter}}"/>
@@ -68,9 +82,58 @@
                             <RadioButton Content="RB4" Padding="0" Margin="2,0" IsChecked="{Binding MyType, ConverterParameter=RB4, Converter={StaticResource EnumRadioConverter}}"/>
                         </StackPanel>
                     </GroupBox>
-                    <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding MyType}" VerticalAlignment="Top" Width="40" Margin="280,15,0,0" TextAlignment="Center"/>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="230,12,0,0" FontSize="9.333"><Run Text="ViewModel "/><LineBreak/><Run Text="MyType"/></TextBlock>
-                    <ed:BlockArrow Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="10" Margin="180,20,0,0" Orientation="Right" Stroke="Black" VerticalAlignment="Top" Width="41"/>
+                    <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding MyType}" VerticalAlignment="Top" Width="40" Margin="82,15,0,0" TextAlignment="Center" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="32,12,0,0" FontSize="9.333" Grid.Column="1"><Run Text="ViewModel "/><LineBreak/><Run Text="MyType"/></TextBlock>
+                    <ed:BlockArrow Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="10" Margin="7,20,0,0" Orientation="Right" Stroke="Black" VerticalAlignment="Top" Width="16" Grid.Column="1"/>
+                    <ed:BlockArrow Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="10" Orientation="Left" Stroke="Black" VerticalAlignment="Top" Width="16                                    " Margin="178,20,0,0" RenderTransformOrigin="8.312,2.2"/>
+                </Grid>
+                <Grid Margin="22,237,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="303">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="View" VerticalAlignment="Top" Margin="19,2,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="223,1,0,0" Text="ViewModel"/>
+                    <TextBox TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="3,24,0,0" Width="80" TextAlignment="Center" Text="{Binding TestData3}" Background="{Binding TestData3, ConverterParameter=Blue\, 2.0\, Yellow\, 6.0\, Red, Converter={StaticResource DoubleCheck2BrushConverter}}" />
+                    <TextBox x:Name="textBox" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Margin="224,24,0,0" TextAlignment="Right" Text="{Binding TestData3}" />
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="70,2,0,0" Text="DoubleCheck2BrushConverter" FontSize="10"/>
+                    <ed:BlockArrow Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="10" Orientation="Left" Stroke="Black" VerticalAlignment="Top" Width="16                                    " Margin="50,5,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="93,17,0,0" Text="ConverterParameter=Blue\, 2.0\, Yellow\, 6.0\, Red" FontSize="8" Height="24" Width="119"/>
+                </Grid>
+                <Grid Margin="24,283,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="293">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="View" VerticalAlignment="Top" Margin="19,2,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="222,1,0,0" Text="ViewModel"/>
+                    <TextBox TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1,24,0,0" Width="78" TextAlignment="Center" Text="{Binding TestData4}" Foreground="{Binding TestData4, ConverterParameter=ERROR\,Red\,Blue, Converter={StaticResource StringCheck2BrushConverter}}"/>
+                    <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding TestData4}" VerticalAlignment="Top" Width="60" Margin="222,24,0,0" TextAlignment="Right"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="70,2,0,0" Text="StringCheck2BrushConverter" FontSize="10"/>
+                    <ed:BlockArrow Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="10" Orientation="Left" Stroke="Black" VerticalAlignment="Top" Width="16                                    " Margin="50,5,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="93,17,0,0" Text="ConverterParameter=ERROR\,Red\,Blue" FontSize="8" Height="24" Width="79"/>
+                </Grid>
+                <Grid Margin="24,330,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="294">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="181*"/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="108*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="View" VerticalAlignment="Top" Margin="19,2,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="35,1,0,0" Text="ViewModel" Grid.Column="2"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="70,2,0,0" Text="BoolVisiblityConverter" FontSize="10"/>
+                    <ed:BlockArrow Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="10" Orientation="Left" Stroke="Black" VerticalAlignment="Top" Width="16                                    " Margin="50,5,0,0"/>
+                    <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="20" Stroke="Black" VerticalAlignment="Top" Width="70" Margin="6,19,0,0" Visibility="{Binding TestData5, Converter={StaticResource BoolVisiblityConverter}}"/>
+                    <CheckBox Content="Visible" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="47,24,0,0" Grid.Column="2" IsChecked="{Binding TestData5}"/>
+                </Grid>
+                <Grid Margin="24,370,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="298">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="View" VerticalAlignment="Top" Margin="19,2,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="224,1,0,0" Text="ViewModel"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="70,2,0,0" Text="Bool2CursorWaitConverter" FontSize="10"/>
+                    <ed:BlockArrow Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="10" Orientation="Left" Stroke="Black" VerticalAlignment="Top" Width="16                                    " Margin="50,5,0,0"/>
+                    <CheckBox Content="Wait" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="233,24,0,0" IsChecked="{Binding TestData6}"/>
+                    <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="20" Stroke="Black" VerticalAlignment="Top" Width="70" Margin="6,19,0,0" Cursor="{Binding TestData6, Converter={StaticResource Bool2CursorWaitConverter}}"/>
+                </Grid>
+                <Grid Margin="24,409,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="298">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="View" VerticalAlignment="Top" Margin="19,2,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="224,1,0,0" Text="ViewModel"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="92,2,0,0" Text="BoolInvertConverter" FontSize="10"/>
+                    <ed:BlockArrow Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="10" Orientation="Left" Stroke="Black" VerticalAlignment="Top" Width="16                                    " Margin="59,5,0,0"/>
+                    <CheckBox x:Name="checkBox" Content="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="233,24,0,0"/>
+                    <CheckBox Content="False" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,24,0,0" IsChecked="{Binding IsChecked, Converter={StaticResource BoolInvertConverter}, ElementName=checkBox}"/>
+                    <ed:BlockArrow Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="10" Margin="196,5,0,0" Orientation="Right" Stroke="Black" VerticalAlignment="Top" Width="16"/>
                 </Grid>
             </Grid>
         </Border>

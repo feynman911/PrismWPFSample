@@ -48,8 +48,13 @@
     <Compile Include="Controls\ToggleSwitch.xaml.cs">
       <DependentUpon>ToggleSwitch.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\Bool2CursorWaitConverter.cs" />
+    <Compile Include="Converters\BoolInvertConverter.cs" />
+    <Compile Include="Converters\BoolVisiblityConverter.cs" />
+    <Compile Include="Converters\DoubleCheck2BrushConverter.cs" />
     <Compile Include="Converters\EnumRadioConverter.cs" />
     <Compile Include="Converters\ScaleConverter.cs" />
+    <Compile Include="Converters\StringCheck2BrushConverter.cs" />
     <Compile Include="Converters\Ushort2Bit16Converter.cs" />
     <Compile Include="Converters\Ushort2HexConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

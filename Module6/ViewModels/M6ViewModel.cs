@@ -75,7 +75,7 @@ namespace Module6.ViewModels
 
         private ushort testData2 = 0x1234;
         /// <summary>
-        /// スケールコンバーターテスト用
+        /// Ushort2Bit16Converterテスト用
         /// </summary>
         public ushort TestData2
         {
@@ -84,6 +84,59 @@ namespace Module6.ViewModels
         }
 
 
+        private double testData3 = 5.0;
+        /// <summary>
+        /// DoubleCheck2BrushConverterテスト用
+        /// </summary>
+        public double TestData3
+        {
+            get { return testData3; }
+            set { SetProperty(ref testData3, value); }
+        }
 
+        private string testData4 = "ERROR";
+        /// <summary>
+        /// StringCheck2BrushConverterテスト用
+        /// </summary>
+        public string TestData4
+        {
+            get { return testData4; }
+            set { SetProperty(ref testData4, value); }
+        }
+
+
+        private bool testData5 = true;
+        /// <summary>
+        /// BoolVisiblityConverterテスト用
+        /// </summary>
+        public bool TestData5
+        {
+            get { return testData5; }
+            set { SetProperty(ref testData5, value); }
+        }
+
+
+        private bool testData6 = false;
+        /// <summary>
+        /// BoolVisiblityConverterテスト用
+        /// </summary>
+        public bool TestData6
+        {
+            get { return testData6; }
+            set { SetProperty(ref testData6, value); }
+
+        }
+
+
+        private int testData7 = 5;
+        /// <summary>
+        /// BoolVisiblityConverterテスト用
+        /// </summary>
+        public int TestData7
+        {
+            get { return testData7; }
+            set { SetProperty(ref testData7, value); }
+
+        }
     }
 }

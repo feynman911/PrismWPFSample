@@ -89,6 +89,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Simple Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\M6.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
