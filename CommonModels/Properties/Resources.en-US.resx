@@ -201,4 +201,7 @@
   <data name="TITLEM9" xml:space="preserve">
     <value>Menu  Setting</value>
   </data>
+  <data name="TITLEMA" xml:space="preserve">
+    <value>Behavior</value>
+  </data>
 </root>

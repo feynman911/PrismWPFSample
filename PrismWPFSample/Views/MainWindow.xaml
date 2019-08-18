@@ -8,7 +8,7 @@
         lex:LocalizeDictionary.DesignCulture="en-US"
         lex:ResxLocalizationProvider.DefaultAssembly="CommonModels"
         lex:ResxLocalizationProvider.DefaultDictionary="Resources"
-        Title="{Binding Title}" Height="800" Width="1000" MinWidth="800" MinHeight="600" ResizeMode="CanResizeWithGrip" d:DataContext="{d:DesignInstance {x:Type ViewModels:MainWindowViewModel}}" Closing="Window_Closing">
+        Title="{Binding Title}" Height="900" Width="1200" MinWidth="800" MinHeight="600" ResizeMode="CanResizeWithGrip" d:DataContext="{d:DesignInstance {x:Type ViewModels:MainWindowViewModel}}" Closing="Window_Closing">
     <Window.Resources>
         <Style TargetType="{x:Type TabItem}">
             <Setter Property="Header" Value="{Binding DataContext.Title}" />

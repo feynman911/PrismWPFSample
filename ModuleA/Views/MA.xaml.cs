@@ -1,28 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
 
 namespace ModuleA.Views
 {
+    [Prism.Regions.ViewSortHint("9100")]
     /// <summary>
-    /// Interaction logic for ViewA.xaml
+    /// Interaction logic for MA
     /// </summary>
-    public partial class MA : TabItem
+    public partial class MA : UserControl
     {
         public MA()
         {
             InitializeComponent();
+        }
+
+        private void TextBlock_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var binding = ExTextBox.GetBindingExpression(TextBox.TextProperty);
+
+            if (binding != null)
+            {
+                binding.UpdateSource();
+            }
         }
     }
 }

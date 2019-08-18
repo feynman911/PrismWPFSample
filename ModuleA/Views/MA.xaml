@@ -1,16 +1,36 @@
-﻿<TabItem x:Class="ModuleA.Views.MA"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:ModuleA.Views"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300"
-             xmlns:prism="http://prismlibrary.com/"
-             prism:ViewModelLocator.AutoWireViewModel="True" Header="TabItem" >
-    <Grid>
+             xmlns:prism="http://prismlibrary.com/"             
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ViewModels="clr-namespace:ModuleA.ViewModels" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:Behaviors="clr-namespace:CommonModels.Behaviors;assembly=CommonModels" mc:Ignorable="d" x:Class="ModuleA.Views.MA"             
+             prism:ViewModelLocator.AutoWireViewModel="True" d:DesignWidth="801.079" d:DesignHeight="914.612">
+    <Grid d:DataContext="{d:DesignInstance {x:Type ViewModels:MAViewModel}}" Background="#FFFFFFF5">
         <TextBlock Text="{Binding Message}"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center" />
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top" Margin="0,5,0,0" MinWidth="60" />
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="0,0,300,0">
+            <TextBox TextWrapping="Wrap" Text="★ビヘイビアの追加&#xA;&#xA;何かイベントが発生した時に特定の処理を行いたい時にビヘイビアを使います。&#xA;ENTERキーが押されたら、バインドを更新するビヘイビアは下記のようになります。&#xA;&#xA;&#xA;using System.Windows;&#xA;using System.Windows.Input;&#xA;using System.Windows.Interactivity;&#xA;using System.Windows.Controls;&#xA;using System.Windows.Data;&#xA;&#xA;namespace CommonModels.Behavors&#xA;{&#xA;    /// &lt;summary&gt;&#xA;    /// TextBoxでEnterが押された時にバインドを更新します&#xA;    /// &lt;/summary&gt;&#xA;    [TypeConstraint(typeof(TextBox))]&#xA;    public class TextBoxEnterBindBehavior : Behavior&lt;TextBox&gt;&#xA;    {&#xA;        /// &lt;summary&gt;&#xA;        /// 要素にアタッチされた時にイベントハンドラを登録&#xA;        /// &lt;/summary&gt;&#xA;        protected override void OnAttached()&#xA;        {&#xA;            base.OnAttached();&#xA;            this.AssociatedObject.PreviewKeyDown += OnPreviewKeyDown;&#xA;        }&#xA;&#xA;        /// &lt;summary&gt;&#xA;        /// 要素にデタッチされた時にイベントハンドラを解除&#xA;        /// &lt;/summary&gt;&#xA;        protected override void OnDetaching()&#xA;        {&#xA;            base.OnDetaching();&#xA;            this.AssociatedObject.PreviewKeyDown -= OnPreviewKeyDown;&#xA;        }&#xA;&#xA;        /// &lt;summary&gt;&#xA;        /// キーダウン時のプレビューでKey.Enterを検出してUpdate&#xA;        /// &lt;/summary&gt;&#xA;        /// &lt;param name=&quot;sender&quot;&gt;&lt;/param&gt;&#xA;        /// &lt;param name=&quot;e&quot;&gt;&lt;/param&gt;&#xA;        private void OnPreviewKeyDown(object sender, KeyEventArgs e)&#xA;        {&#xA;            if (e.Key == Key.Enter)&#xA;            {&#xA;                // エンターキーが押されたら BindingをUpdateする&#xA;                TextBox tBox = (TextBox)sender;&#xA;                DependencyProperty prop = TextBox.TextProperty;&#xA;                BindingExpression binding&#xA;                 = BindingOperations.GetBindingExpression(tBox, prop);&#xA;                if (binding != null) { binding.UpdateSource(); }&#xA;            }&#xA;        }&#xA;    }&#xA;}" IsReadOnly="True" BorderThickness="0" Background="{x:Null}"/>
+        </ScrollViewer>
+        <Grid HorizontalAlignment="Right" Margin="0" Width="300">
+            <StackPanel Margin="20,60,0,103" Orientation="Vertical" HorizontalAlignment="Left" Width="150">
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="PropertyChanged" VerticalAlignment="Top" Margin="0"/>
+                <TextBox Height="23" TextWrapping="Wrap" Text="{Binding TestData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Margin="0,5,0,0" Width="100"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="LostForcus" VerticalAlignment="Top" Margin="0,20,0,0"/>
+                <TextBox Height="23" TextWrapping="Wrap" Text="{Binding TestData, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" VerticalAlignment="Top" Margin="0,5,0,0" Width="100"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Explicit" VerticalAlignment="Top" Margin="4,20,0,0"/>
+                <TextBox x:Name="ExTextBox" Height="23" TextWrapping="Wrap" Text="{Binding TestData, Mode=TwoWay, UpdateSourceTrigger=Explicit}" VerticalAlignment="Top" Margin="0,5,0,0" Width="100"/>
+                <TextBlock TextWrapping="Wrap" Text="更新" Background="#FFC3D6FF" TextAlignment="Center" MouseDown="TextBlock_MouseDown" Width="100"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBoxEnterBindBehavior" VerticalAlignment="Top" Margin="0,20,0,0"/>
+                <TextBox Height="23" TextWrapping="Wrap" Text="{Binding TestData}" VerticalAlignment="Top" Margin="0,5,0,0" Width="100">
+                    <i:Interaction.Behaviors>
+                        <Behaviors:TextBoxEnterBindBehavior/>
+                    </i:Interaction.Behaviors>
+                </TextBox>
+            </StackPanel>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="VIEWMODEL" VerticalAlignment="Top" Margin="170,30,0,0"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="VIEW" VerticalAlignment="Top" Margin="30
+                       ,30,0,0"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding TestData}" VerticalAlignment="Top" Margin="180,59,0,0" Width="100" Background="#FFFBFBFB"/>
+        </Grid>
     </Grid>
-</TabItem>
+</UserControl>

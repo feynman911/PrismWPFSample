@@ -3,18 +3,20 @@ using Module2.Models;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
+using Prism.Regions;
 using System.Threading.Tasks;
 
 namespace Module2.ViewModels
 {
-    public class M2ViewModel : BindableBase
+    public class M2ViewModel : BindableBase, INavigationAware
     {
 
         public M2ViewModel() { }
 
         IEventAggregator _ea;
+        private readonly IRegionManager _regionManager;
 
-        public M2ViewModel(CModel cModel, IEventAggregator ea)
+        public M2ViewModel(CModel cModel, IEventAggregator ea, IRegionManager regionManager)
         {
             MyCModel = cModel;
             _ea = ea;
@@ -25,6 +27,8 @@ namespace Module2.ViewModels
 
             //TabItemのHeaderになる言葉を多言語設定の為Resoucesから取り出す
             Title = CModel.GetLocalizedValue<string>("TITLEM2");
+
+            _regionManager = regionManager;
         }
 
         private M2Model myM2Model;
@@ -96,6 +100,7 @@ namespace Module2.ViewModels
             commandEventTest1 ?? (commandEventTest1 = new DelegateCommand(ExecuteCommandEventTest1));
         async void ExecuteCommandEventTest1()
         {
+            _regionManager.RequestNavigate("ContentRegion", "M2");
             _ea.GetEvent<MessageSentEvent>().Publish("モジュール２のメニュー１が選択されました");
             await Task.Delay(2000);
             _ea.GetEvent<MessageSentEvent>().Publish("");
@@ -106,9 +111,25 @@ namespace Module2.ViewModels
             commandEventTest2 ?? (commandEventTest2 = new DelegateCommand(ExecuteCommandEventTest2));
         async void ExecuteCommandEventTest2()
         {
+            _regionManager.RequestNavigate("ContentRegion", "M2");
             _ea.GetEvent<MessageSentEvent>().Publish("モジュール２のメニュー２が選択されました");
             await Task.Delay(2000);
             _ea.GetEvent<MessageSentEvent>().Publish("");
+        }
+
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            return true;
+        }
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+
         }
     }
 }

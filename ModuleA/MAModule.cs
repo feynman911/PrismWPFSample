@@ -5,7 +5,7 @@ using Prism.Regions;
 
 namespace ModuleA
 {
-    public class ModuleAModule : IModule
+    public class MAModule : IModule
     {
         public void OnInitialized(IContainerProvider containerProvider)
         {

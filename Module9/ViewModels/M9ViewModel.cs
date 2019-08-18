@@ -2,6 +2,7 @@
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
+using Prism.Regions;
 using System.Threading.Tasks;
 
 namespace Module9.ViewModels
@@ -9,10 +10,11 @@ namespace Module9.ViewModels
     public class M9ViewModel : BindableBase
     {
         IEventAggregator _ea;
+        private readonly IRegionManager _regionManager;
 
         public M9ViewModel() { }
 
-        public M9ViewModel(CModel commonModel, IEventAggregator ea)
+        public M9ViewModel(CModel commonModel, IEventAggregator ea, IRegionManager regionManager)
         {
             MyCModel = commonModel;
             _ea = ea;
@@ -20,6 +22,8 @@ namespace Module9.ViewModels
 
             //TabItemのHeaderになる言葉を多言語設定の為Resoucesから取り出す
             Title = CModel.GetLocalizedValue<string>("TITLEM9");
+
+            _regionManager = regionManager;
         }
 
         private string _message = "Module9";
@@ -81,6 +85,7 @@ namespace Module9.ViewModels
         async void ExecuteCommandMenu1()
         {
             MyCModel.CommandEnable = false;
+            _regionManager.RequestNavigate("ContentRegion", "M9");
             MyCModel.StatusString = "メニュー設定モジュール(Module9)のメニュー１が実行されました";
             await Task.Delay(3000);
             MyCModel.StatusString = "";
@@ -94,6 +99,7 @@ namespace Module9.ViewModels
         async void ExecuteCommandMenu2()
         {
             MyCModel.CommandEnable = false;
+            _regionManager.RequestNavigate("ContentRegion", "M9");
             MyCModel.StatusString = "メニュー設定モジュール(Module9)のメニュー２が実行されました";
             await Task.Delay(3000);
             MyCModel.StatusString = "";

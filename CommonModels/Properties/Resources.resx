@@ -183,4 +183,7 @@
   <data name="TITLEM9" xml:space="preserve">
     <value>MENU</value>
   </data>
+  <data name="TITLEMA" xml:space="preserve">
+    <value>BEHAVIOR</value>
+  </data>
 </root>

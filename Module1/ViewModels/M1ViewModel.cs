@@ -7,16 +7,18 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Threading.Tasks;
 using WPFLocalizeExtension.Engine;
+using Prism.Regions;
 
 namespace Module1.ViewModels
 {
-    public class M1ViewModel : BindableBase
+    public class M1ViewModel : BindableBase,INavigationAware
     {
         public M1ViewModel(){  }
 
         IEventAggregator _ea;
+        private readonly IRegionManager _regionManager;
 
-        public M1ViewModel(CModel cModel, IEventAggregator ea)
+        public M1ViewModel(CModel cModel, IEventAggregator ea, IRegionManager regionManager)
         {
             MyCModel = cModel;
             _ea = ea;
@@ -27,7 +29,7 @@ namespace Module1.ViewModels
 
             //TabItemのHeaderになる言葉を多言語設定の為Resoucesから取り出す
             Title = CModel.GetLocalizedValue<string>("TITLEM1");
-
+            _regionManager = regionManager;
         }
 
         private M1Model myViewAModel;
@@ -125,6 +127,7 @@ namespace Module1.ViewModels
             commandMenu1 ?? (commandMenu1 = new DelegateCommand(ExecuteCommandMenu1));
         async void ExecuteCommandMenu1()
         {
+            _regionManager.RequestNavigate("ContentRegion","M1");
             _ea.GetEvent<MessageSentEvent>().Publish("モジュール１のメニュー１が選択されました");
             LocalizeDictionary.Instance.Culture = CultureInfo.GetCultureInfo("ja-JP");
             _ea.GetEvent<LanguageChangeEvent>().Publish();
@@ -137,11 +140,40 @@ namespace Module1.ViewModels
             commandMenu2 ?? (commandMenu2 = new DelegateCommand(ExecuteCommandMenu2));
         async void ExecuteCommandMenu2()
         {
+            _regionManager.RequestNavigate("ContentRegion", "M1");
             _ea.GetEvent<MessageSentEvent>().Publish("モジュール１のメニュー２が選択されました");
             LocalizeDictionary.Instance.Culture = CultureInfo.GetCultureInfo("en-US");
             _ea.GetEvent<LanguageChangeEvent>().Publish();
             await Task.Delay(2000);
             _ea.GetEvent<MessageSentEvent>().Publish("");
+        }
+
+        /// <summary>
+        /// ナビゲーション移動する時に呼ばれる
+        /// </summary>
+        /// <param name="navigationContext"></param>
+        void INavigationAware.OnNavigatedTo(NavigationContext navigationContext)
+        {
+
+        }
+
+        /// <summary>
+        /// ナビゲーション対象かどうかを指定する
+        /// </summary>
+        /// <param name="navigationContext"></param>
+        /// <returns></returns>
+        bool INavigationAware.IsNavigationTarget(NavigationContext navigationContext)
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// ナビゲーションしてきた時に呼ばれる
+        /// </summary>
+        /// <param name="navigationContext"></param>
+        void INavigationAware.OnNavigatedFrom(NavigationContext navigationContext)
+        {
+
         }
 
     }

@@ -201,4 +201,7 @@
   <data name="TITLEM9" xml:space="preserve">
     <value>メニュー設定</value>
   </data>
+  <data name="TITLEMA" xml:space="preserve">
+    <value>ビヘイビア</value>
+  </data>
 </root>

@@ -4,6 +4,7 @@ namespace Module2.ViewModels
 {
     public class M2MenuViewModel : BindableBase
     {
+
         public M2MenuViewModel()
         {
 

@@ -94,6 +94,9 @@
       <Version>7.1.0.431</Version>
     </PackageReference>
     <PackageReference Include="Prism.Wpf" Version="7.1.0.431&#xD;" />
+    <PackageReference Include="WPFLocalizeExtension">
+      <Version>3.3.1</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

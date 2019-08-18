@@ -311,5 +311,14 @@ namespace CommonModels.Properties {
                 return ResourceManager.GetString("TITLEM9", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   BEHAVIOR に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string TITLEMA {
+            get {
+                return ResourceManager.GetString("TITLEMA", resourceCulture);
+            }
+        }
     }
 }
