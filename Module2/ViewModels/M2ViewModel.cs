@@ -119,7 +119,7 @@ namespace Module2.ViewModels
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-
+            MyCModel.StatusString = "モジュール２に遷移しました";
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)
@@ -129,7 +129,7 @@ namespace Module2.ViewModels
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-
+            MyCModel.StatusString = "モジュール２から遷移しました";
         }
     }
 }

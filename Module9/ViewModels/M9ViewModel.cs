@@ -86,11 +86,10 @@ namespace Module9.ViewModels
         {
             MyCModel.CommandEnable = false;
             _regionManager.RequestNavigate("ContentRegion", "M9");
-            MyCModel.StatusString = "メニュー設定モジュール(Module9)のメニュー１が実行されました";
-            await Task.Delay(3000);
-            MyCModel.StatusString = "";
+            _ea.GetEvent<MessageSentEvent>().Publish("メニュー設定モジュール(Module9)のメニュー１が実行されました");
+            await Task.Delay(2000);
+            _ea.GetEvent<MessageSentEvent>().Publish("");
             MyCModel.CommandEnable = true;
-            //_ea.GetEvent<MessageSentEvent>().Publish("メニュー設定モジュール(Module9)のメニュー１が実行されました");
         }
 
         private DelegateCommand commandMenu2;
@@ -100,11 +99,10 @@ namespace Module9.ViewModels
         {
             MyCModel.CommandEnable = false;
             _regionManager.RequestNavigate("ContentRegion", "M9");
-            MyCModel.StatusString = "メニュー設定モジュール(Module9)のメニュー２が実行されました";
-            await Task.Delay(3000);
-            MyCModel.StatusString = "";
+            _ea.GetEvent<MessageSentEvent>().Publish("メニュー設定モジュール(Module9)のメニュー２が実行されました");
+            await Task.Delay(2000);
+            _ea.GetEvent<MessageSentEvent>().Publish("");
             MyCModel.CommandEnable = true;
-            //_ea.GetEvent<MessageSentEvent>().Publish("メニュー設定モジュール(Module9)のメニュー１が実行されました");
         }
     }
 }
