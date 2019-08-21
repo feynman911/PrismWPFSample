@@ -30,7 +30,7 @@ namespace CommonModels.Behaviors
         }
 
         /// <summary>
-        /// キーダウン時のプレビューでKey.Enterを検出してUpdate
+        /// キーダウン時のプレビューでKey.Enter Key.Escapeを検出してUpdate
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -44,6 +44,15 @@ namespace CommonModels.Behaviors
                 BindingExpression binding
                  = BindingOperations.GetBindingExpression(tBox, prop);
                 if (binding != null) { binding.UpdateSource(); }
+            }
+            if (e.Key == Key.Escape)
+            {
+                // エスケープが押されたら 変更をキャンセルする
+                TextBox tBox = (TextBox)sender;
+                DependencyProperty prop = TextBox.TextProperty;
+                BindingExpression binding
+                    = BindingOperations.GetBindingExpression(tBox, prop);
+                if (binding != null) { binding.UpdateTarget(); }
             }
         }
     }
