@@ -172,7 +172,7 @@
     <value>Save</value>
   </data>
   <data name="TITLE" xml:space="preserve">
-    <value>Prism WPF Sample (English)</value>
+    <value>Prism WPF Sample (English) Megutan</value>
   </data>
   <data name="TITLEM1" xml:space="preserve">
     <value>Language Setting</value>
@@ -203,5 +203,8 @@
   </data>
   <data name="TITLEMA" xml:space="preserve">
     <value>Behavior</value>
+  </data>
+  <data name="TITLEMB" xml:space="preserve">
+    <value>UserControl</value>
   </data>
 </root>

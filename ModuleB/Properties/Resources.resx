@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,7 +60,6 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -69,10 +68,9 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -87,10 +85,9 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -112,99 +109,9 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AUTORESIZE" xml:space="preserve">
-    <value>自動リサイズ</value>
-  </data>
-  <data name="COPY" xml:space="preserve">
-    <value>コピー</value>
-  </data>
-  <data name="EDIT" xml:space="preserve">
-    <value>編集</value>
-  </data>
-  <data name="ERROR" xml:space="preserve">
-    <value>エラー</value>
-  </data>
-  <data name="EVENTTEST" xml:space="preserve">
-    <value>イベントテスト</value>
-  </data>
-  <data name="FILE" xml:space="preserve">
-    <value>ファイル</value>
-  </data>
-  <data name="LANGUAGE" xml:space="preserve">
-    <value>日本語</value>
-  </data>
-  <data name="LOGWRITE" xml:space="preserve">
-    <value>ログ保存</value>
-  </data>
-  <data name="M1MENU1" xml:space="preserve">
-    <value>日本語</value>
-  </data>
-  <data name="M1MENU2" xml:space="preserve">
-    <value>英語</value>
-  </data>
-  <data name="M2MENU1" xml:space="preserve">
-    <value>メニュー１</value>
-  </data>
-  <data name="M2MENU2" xml:space="preserve">
-    <value>メニュー２</value>
-  </data>
-  <data name="M9MENU1" xml:space="preserve">
-    <value>メニュー１</value>
-  </data>
-  <data name="M9MENU2" xml:space="preserve">
-    <value>メニュー２</value>
-  </data>
-  <data name="MODULE" xml:space="preserve">
-    <value>モジュール</value>
-  </data>
-  <data name="READ" xml:space="preserve">
-    <value>読込</value>
-  </data>
-  <data name="RESET" xml:space="preserve">
-    <value>リセット</value>
-  </data>
-  <data name="SAVE" xml:space="preserve">
-    <value>保存</value>
-  </data>
-  <data name="TITLE" xml:space="preserve">
-    <value>Prism WPF Sample (日本語) Megutan</value>
-  </data>
-  <data name="TITLEM1" xml:space="preserve">
-    <value>言語設定</value>
-  </data>
-  <data name="TITLEM2" xml:space="preserve">
-    <value>Prismの説明</value>
-  </data>
-  <data name="TITLEM3" xml:space="preserve">
-    <value>ログ保存</value>
-  </data>
-  <data name="TITLEM4" xml:space="preserve">
-    <value>OxyPlot</value>
-  </data>
-  <data name="TITLEM5" xml:space="preserve">
-    <value>設定</value>
-  </data>
-  <data name="TITLEM6" xml:space="preserve">
-    <value>コンバーター</value>
-  </data>
-  <data name="TITLEM7" xml:space="preserve">
-    <value>ウインドウ位置保存</value>
-  </data>
-  <data name="TITLEM8" xml:space="preserve">
-    <value>２重起動禁止</value>
-  </data>
-  <data name="TITLEM9" xml:space="preserve">
-    <value>メニュー設定</value>
-  </data>
-  <data name="TITLEMA" xml:space="preserve">
-    <value>ビヘイビア</value>
-  </data>
-  <data name="TITLEMB" xml:space="preserve">
-    <value>ユーザーコントロール</value>
-  </data>
 </root>

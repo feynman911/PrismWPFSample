@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Module9", "Module9\Module9.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleA", "ModuleA\ModuleA.csproj", "{109D5B50-1B30-4A5D-85F0-6865DF586662}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleB", "ModuleB\ModuleB.csproj", "{1C85FAFD-93DB-4E00-9F8F-7B91FF62DFA6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,14 +103,18 @@ Global
 		{109D5B50-1B30-4A5D-85F0-6865DF586662}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{109D5B50-1B30-4A5D-85F0-6865DF586662}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{109D5B50-1B30-4A5D-85F0-6865DF586662}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C85FAFD-93DB-4E00-9F8F-7B91FF62DFA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C85FAFD-93DB-4E00-9F8F-7B91FF62DFA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C85FAFD-93DB-4E00-9F8F-7B91FF62DFA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C85FAFD-93DB-4E00-9F8F-7B91FF62DFA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_SortFileContentOnSave = True
-		RESX_ResXSortingComparison = Ordinal
-		SolutionGuid = {9A93DB3B-89A8-4796-B697-72FB2F1AF0B6}
 		RESX_NeutralResourcesLanguage = en-001
+		SolutionGuid = {9A93DB3B-89A8-4796-B697-72FB2F1AF0B6}
+		RESX_ResXSortingComparison = Ordinal
+		RESX_SortFileContentOnSave = True
 	EndGlobalSection
 EndGlobal

@@ -186,4 +186,7 @@
   <data name="TITLEMA" xml:space="preserve">
     <value>BEHAVIOR</value>
   </data>
+  <data name="TITLEMB" xml:space="preserve">
+    <value>USER CONTROL</value>
+  </data>
 </root>

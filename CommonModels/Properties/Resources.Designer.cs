@@ -320,5 +320,14 @@ namespace CommonModels.Properties {
                 return ResourceManager.GetString("TITLEMA", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   USER CONTROL に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string TITLEMB {
+            get {
+                return ResourceManager.GetString("TITLEMB", resourceCulture);
+            }
+        }
     }
 }
